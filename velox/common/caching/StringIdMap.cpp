@@ -74,7 +74,7 @@ uint64_t StringIdMap::makeId(std::string_view string) {
   do {
     entry.id = ++lastId_;
   } while (entry.id != kNoId &&
-      idToString_.find(entry.id) != idToString_.end());
+           idToString_.find(entry.id) != idToString_.end());
   entry.numInUse = 1;
   pinnedSize_ += entry.string.size();
   auto id = entry.id;
