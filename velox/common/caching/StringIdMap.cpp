@@ -73,7 +73,7 @@ uint64_t StringIdMap::makeId(std::string_view string) {
   // be in the 100K range.
   do {
     entry.id = ++lastId_;
-  } while (entry.id != kNoId &&
+  } while (entry.id == kNoId ||
            idToString_.find(entry.id) != idToString_.end());
   entry.numInUse = 1;
   pinnedSize_ += entry.string.size();
