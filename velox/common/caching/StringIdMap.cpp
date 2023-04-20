@@ -59,9 +59,8 @@ uint64_t StringIdMap::makeId(std::string_view string) {
   if (it != stringToId_.end()) {
     auto entry = idToString_.find(it->second);
     VELOX_CHECK(entry != idToString_.end());
-    if (++entry->second.numInUse == 1) {
-      pinnedSize_ += entry->second.string.size();
-    }
+    VELOX_CHECK_LT(0, entry->second.numInUse);
+    entry->second.numInUse;
 
     return it->second;
   }
