@@ -53,3 +53,8 @@ TEST(StringIdMapTest, rehash) {
     EXPECT_EQ(ids[i].id(), StringIdLease(map, name).id());
   }
 }
+
+TEST(StringIdMapTest, lastId) {
+  StringIdMap map;
+  map.testingOverflow();
+}

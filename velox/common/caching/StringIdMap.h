@@ -20,6 +20,7 @@
 
 #include <folly/container/F14Map.h>
 
+#include "gtest/gtest.h"
 #include "velox/common/base/Exceptions.h"
 
 namespace facebook::velox {
@@ -61,6 +62,12 @@ class StringIdMap {
     std::lock_guard<std::mutex> l(mutex_);
     auto it = idToString_.find(id);
     return it == idToString_.end() ? "" : it->second.string;
+  }
+
+  void testingOverflow() {
+    lastId_ = kNoId - 1;
+    makeId("test");
+    EXPECT_EQ(id("test"), 0);
   }
 
  private:
