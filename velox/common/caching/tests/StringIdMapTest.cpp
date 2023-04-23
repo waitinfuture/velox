@@ -54,7 +54,7 @@ TEST(StringIdMapTest, rehash) {
   }
 }
 
-TEST(StringIdMapTest, lastId) {
+TEST(StringIdMapTest, overflow) {
   StringIdMap map;
   map.testingOverflow();
 }
