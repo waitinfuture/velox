@@ -64,10 +64,14 @@ class StringIdMap {
     return it == idToString_.end() ? "" : it->second.string;
   }
 
-  void testingOverflow() {
-    lastId_ = kNoId - 1;
+  void testingSetLastId(uint64_t lastId) {
+    lastId_ = lastId;
     makeId("test");
-    EXPECT_EQ(id("test"), 0);
+    if (lastId == kNoId - 1) {
+      EXPECT_EQ(id("test"), 0);
+    } else {
+      EXPECT_EQ(id("test"), lastId + 1);
+    }
   }
 
  private:
