@@ -55,10 +55,8 @@ TEST(StringIdMapTest, rehash) {
 }
 
 TEST(StringIdMapTest, overflow) {
-  StringIdMap map1;
-  map1.testingSetLastId(StringIdMap::kNoId - 2);
-  StringIdMap map2;
-  map2.testingSetLastId(StringIdMap::kNoId - 1);
-  StringIdMap map3;
-  map2.testingSetLastId(0);
+  StringIdMap map;
+  map.testingSetLastId(StringIdMap::kNoId - 1);
+  map.makeId("test");
+  EXPECT_TRUE(map.id("test") == 0);
 }
